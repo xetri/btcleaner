@@ -31,15 +31,15 @@ def getBalance(addr):
                 res = torApi().get(api(addr))
 
                 if api.__name__ == apiurl1.__name__:
-                    return float(res.json())
+                    return int(res.json())
                 elif api.__name__ == apiurl2.__name__:
-                    return float(res.json()["balance"])
+                    return int(res.json()["balance"])
                 elif api.__name__ == apiurl3.__name__:
                     r = res.json()
-                    return float(r["unconfirmed_balance"]) + float(r["confirmed_balance"])
+                    return int(r["unconfirmed_balance"]) + float(r["confirmed_balance"])
                 elif api.__name__ == apiurl4.__name__:
                     r = res.json()["chain_stats"]
-                    return float(r["funded_txo_count"]) + float(r["funded_txo_sum"])
+                    return int(r["funded_txo_count"]) + float(r["funded_txo_sum"])
 
             except: pass
             
