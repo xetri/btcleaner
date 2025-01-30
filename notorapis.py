@@ -1,15 +1,4 @@
 import requests
-from tornet import change_ip
-
-ip = change_ip()
-
-def torApi():
-    session = requests.session()
-    session.proxies = {
-        "http": "socks5h://127.0.0.1:9050",
-        "https": "socks5h://127.0.0.1:9050"
-    }
-    return session
 
 # =>
 def apiurl1(addr) : return "https://blockchain.info/q/addressbalance/" + addr
@@ -28,7 +17,7 @@ def getBalance(addr):
     while timeout < 3:
         for api in apis:
             try:
-                res = torApi().get(api(addr))
+                res = requests.get(api(addr))
 
                 if api.__name__ == apiurl1.__name__:
                     return int(res.json())
@@ -43,8 +32,6 @@ def getBalance(addr):
 
             except: pass
             
-        global ip
-        ip = change_ip()
         timeout += 1
 
     return 0
