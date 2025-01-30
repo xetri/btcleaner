@@ -25,10 +25,10 @@ def getBalance(addr):
                     return int(res.json()["balance"])
                 elif api.__name__ == apiurl3.__name__:
                     r = res.json()
-                    return int(r["unconfirmed_balance"]) + float(r["confirmed_balance"])
+                    return int(r["unconfirmed_balance"]) + int(r["confirmed_balance"])
                 elif api.__name__ == apiurl4.__name__:
                     r = res.json()["chain_stats"]
-                    return int(r["funded_txo_count"]) + float(r["funded_txo_sum"])
+                    return int(r["funded_txo_count"]) + int(r["funded_txo_sum"])
 
             except: pass
             
