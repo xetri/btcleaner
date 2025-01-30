@@ -43,6 +43,7 @@ def getBalance(addr):
 
             except: pass
             
+        global ip
         ip = change_ip()
         timeout += 1
 

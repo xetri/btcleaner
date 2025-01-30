@@ -3,6 +3,10 @@ from helper import getRandomHex, pvkhex_to_address_compressed
 import apis
 
 iter = 1
+try:
+    with open("./state", "r") as f:
+        iter = int(f.read())
+except: pass
 
 def saveAddr(addr, pvhex, balance):
     with open("./founds.btc", "a+") as f:
@@ -19,5 +23,7 @@ while True:
         print(f"Found: {balance} | {addr} || {pvkhex}")
         saveAddr(addr, pvkhex, balance)
 
-    if iter % 13 == 0: apis.ip = change_ip()
+    if iter % 13 == 0:
+        apis.ip = change_ip()
+        with open("./state", "w+") as f: f.write(str(iter))
     iter += 1
